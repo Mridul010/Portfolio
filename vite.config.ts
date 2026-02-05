@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
 export default defineConfig({
-  base: './',
+  base: "/Portfolio/",
   plugins: [react()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -50,10 +50,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // 👇 ONLY THIS PART CHANGED
   build: {
     target: 'esnext',
-    outDir: 'build',
+    outDir: '.',        // build to root
+    emptyOutDir: false, // keep source files
   },
+
   server: {
     port: 3000,
     open: true,
