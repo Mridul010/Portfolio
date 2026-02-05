@@ -48,3 +48,4 @@ __pycache__/
 
 # TypeScript
 *.tsbuildinfo
+build_error.log

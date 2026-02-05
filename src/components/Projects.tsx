@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
@@ -26,22 +26,28 @@ export function Projects() {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A modern, fully responsive e-commerce solution with advanced filtering and seamless checkout experience.',
+      title: 'Smart Lead AI',
+      description: 'End-to-End full-stack ML application using Python, Scikit-Learn, and Flask to predict customer conversion probabilities with 91% accuracy.',
       image: 'https://images.unsplash.com/photo-1760548425425-e42e77fa38f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBkZXNpZ24lMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzcwMjUxMjc0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['React', 'TypeScript', 'Tailwind CSS'],
+      tags: ['Python', 'Scikit-Learn', 'Flask'],
+      link: 'https://github.com/Mridul010/Smart-Lead-Ai',
+      date: 'Nov 2025'
     },
     {
-      title: 'Mobile Banking App',
-      description: 'Intuitive mobile banking interface with real-time transactions and advanced security features.',
+      title: 'Emotion Detection',
+      description: 'AI-based web app using Python and Flask to classify emotions from text. Integrated IBM Watson AI Libraries for core analysis.',
       image: 'https://images.unsplash.com/photo-1707836916010-3c4ad261936c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ24lMjBtb2NrdXB8ZW58MXx8fHwxNzcwMjM1NTQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['React Native', 'Node.js', 'MongoDB'],
+      tags: ['Python', 'Flask', 'IBM Watson'],
+      link: 'https://github.com/Mridul010/final_project',
+      date: 'Oct 2025'
     },
     {
-      title: 'Brand Identity System',
-      description: 'Complete brand identity and design system for a tech startup, including logo, colors, and components.',
+      title: 'TrackEx',
+      description: 'Personal finance & stock prediction app with tax calculation. Implemented Bi-LSTM, XGBoost, and CNN models achieving 92% accuracy.',
       image: 'https://images.unsplash.com/photo-1633533448522-26ee3eab7961?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMGlkZW50aXR5JTIwZGVzaWdufGVufDF8fHx8MTc3MDI2NTMwNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['Figma', 'Branding', 'UI/UX'],
+      tags: ['Python', 'Firebase', 'ML'],
+      link: 'https://github.com/Mridul010', // Placeholder as specific repo wasn't provided
+      date: 'Feb 2025'
     },
   ];
 
@@ -63,7 +69,6 @@ export function Projects() {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.6, 0.01, 0.05, 0.95],
       },
     },
   };
@@ -139,10 +144,13 @@ export function Projects() {
               </div>
 
               <div className="p-6 relative">
-                <h3 className="text-2xl mb-3 text-white">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-2xl text-white font-bold">{project.title}</h3>
+                  <span className="text-xs text-yellow-400/80 font-mono border border-yellow-400/20 px-2 py-1 rounded">{project.date}</span>
+                </div>
+                <p className="text-gray-400 mb-4 line-clamp-3">{project.description}</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, tagIndex) => (
                     <motion.span
                       key={tagIndex}
@@ -157,33 +165,32 @@ export function Projects() {
                 </div>
 
                 <div className="flex gap-4">
-                  <motion.button
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300"
-                  >
-                    <ExternalLink size={18} />
-                    <span className="text-sm">Live Demo</span>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-300 transition-colors duration-300"
                   >
                     <Github size={18} />
-                    <span className="text-sm">Code</span>
-                  </motion.button>
+                    <span>View Code</span>
+                  </motion.a>
                 </div>
               </div>
 
-              <motion.div
+
+              <motion.a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0 }}
                 whileHover={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-4 right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(250,204,21,0.6)]"
+                className="absolute top-4 right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(250,204,21,0.6)] z-10"
               >
-                <ExternalLink className="text-black" size={20} />
-              </motion.div>
+                <Github className="text-black" size={20} />
+              </motion.a>
             </motion.div>
           ))}
         </motion.div>
