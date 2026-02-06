@@ -105,8 +105,8 @@ export function About() {
           >
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
               I'm a passionate software developer with a keen eye for detail and a love for creating
-              memorable digital experiences. With years of experience in the industry, I've worked with
-              clients ranging from startups to established brands.
+              memorable digital experiences. As a fresh graduate, I’m excited to take on challenges, learn from real projects,
+              and grow alongside innovative teams.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
               My approach combines technical expertise with creative thinking, ensuring every project
