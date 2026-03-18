@@ -31,11 +31,12 @@ body {
   font-family: 'Share Tech Mono', monospace;
   overflow-x: hidden; cursor: none;
 }
-/* CRT scanlines */
+/* CRT scanlines — static SVG tile (GPU-cached texture, no per-frame gradient render) */
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.012) 2px, rgba(0,240,255,0.012) 4px);
-  will-change: transform; transform: translateZ(0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='4'%3E%3Crect y='2' width='1' height='2' fill='%2300f0ff' opacity='0.012'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  transform: translateZ(0);
 }
 /* Cinematic vignette */
 body::after {
@@ -51,7 +52,7 @@ canvas#bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh
 .loader-msg { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; }
 
 /* Pointer */
-.cursor-dot { width:6px; height:6px; background:var(--cyan); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; top:0; left:0; transform:translate(-50%,-50%); box-shadow:0 0 10px var(--cyan), 0 0 25px rgba(0,240,255,0.25), 0 0 4px #fff; will-change: transform; }
+.cursor-dot { width:6px; height:6px; background:var(--cyan); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; top:0; left:0; transform:translate(-50%,-50%); box-shadow:0 0 8px var(--cyan); will-change: transform; }
 .cursor-ring { width:30px; height:30px; border:1px solid rgba(0,240,255,.6); border-radius:50%; position:fixed; z-index:9998; pointer-events:none; top:0; left:0; transform:translate(-50%,-50%); transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease; will-change: transform; }
 
 /* Chapter Nav */
@@ -159,16 +160,16 @@ canvas#bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh
 .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.1em; }
 .skill-track { width: 100%; height: 2px; background: rgba(255,255,255,0.1); position: relative; }
 .skill-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--magenta)); box-shadow: 0 0 10px var(--magenta); position: relative; animation: skill-breathe 3s ease-in-out infinite; }
-.skill-fill::after { content:''; position:absolute; right:0; top:50%; transform:translateY(-50%); width:6px; height:6px; background:#fff; border-radius:50%; box-shadow:0 0 10px #fff, 0 0 20px var(--cyan); }
+.skill-fill::after { content:''; position:absolute; right:0; top:50%; transform:translateY(-50%); width:6px; height:6px; background:#fff; border-radius:50%; box-shadow:0 0 8px #fff; }
 @keyframes skill-breathe {
-  0%, 100% { filter: brightness(1); box-shadow: 0 0 10px var(--magenta); }
-  50%      { filter: brightness(1.25); box-shadow: 0 0 18px var(--magenta), 0 0 30px rgba(255,0,128,0.15); }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.8; }
 }
 
 /* Projects (Horizontal) */
 #projects-container { width: 100%; height: 100vh; overflow: hidden; position: relative; will-change: transform; }
 .projects-track { display: flex; width: 300vw; height: 100%; padding: 0 12rem; align-items: center; gap: 5rem; will-change: transform; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0); }
-.project-card { width: 600px; height: 400px; background: rgba(0,0,20,0.6); border: 1px solid rgba(0,240,255,0.2); padding: 3rem; flex-shrink: 0; position: relative; backdrop-filter: blur(10px); transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; }
+.project-card { width: 600px; height: 400px; background: rgba(3,3,15,0.92); border: 1px solid rgba(0,240,255,0.2); padding: 3rem; flex-shrink: 0; position: relative; transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; }
 .project-card:hover { border-color: rgba(0,240,255,0.45); box-shadow: 0 0 35px rgba(0,240,255,0.1), inset 0 0 30px rgba(0,240,255,0.03); transform: translateY(-6px); }
 .project-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:linear-gradient(90deg, var(--cyan), transparent); }
 .p-num { font-family: 'Orbitron'; font-size: 4rem; color: rgba(255,255,255,0.05); position: absolute; right: 2rem; top: 1rem; font-weight: 900; transition: color 0.3s; }
@@ -203,9 +204,8 @@ canvas#bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh
 .cert-card {
   position: relative;
   border: 1px solid rgba(0,240,255,0.15);
-  background: rgba(0,0,20,0.5);
+  background: rgba(3,3,15,0.9);
   padding: 1.4rem 1.6rem;
-  backdrop-filter: blur(8px);
   opacity: 0;
   transform: translateY(30px);
   transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
@@ -568,9 +568,7 @@ a.ci-val:hover::after { width: 100%; }
     clip-path: none;
     border: none;
     border-top: 1px solid rgba(0,240,255,0.2);
-    background: rgba(3,3,9,0.95);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(3,3,9,0.98);
     flex-direction: column;
     animation: nav-slide-up 0.7s cubic-bezier(0.23,1,0.32,1) both;
     animation-delay: 0.3s;
@@ -924,7 +922,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const particlesGeo = new THREE.BufferGeometry();
-const count = isMobile() ? 800 : 1500;
+const count = isMobile() ? 600 : 1000;
 const posArray = new Float32Array(count * 3);
 for(let i=0; i<count*3; i++) posArray[i] = (Math.random() - 0.5) * 15;
 particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
