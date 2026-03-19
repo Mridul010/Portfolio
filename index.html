@@ -244,11 +244,57 @@ section {
 /* ========== HERO ========== */
 #hero {
   min-height: 100vh;
-  display: flex; flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  align-items: center;
+  gap: 40px;
   padding-top: 80px;
   max-width: 1400px; margin: 0 auto;
   padding-left: 48px; padding-right: 48px;
+}
+#hero .hero-left { display: flex; flex-direction: column; justify-content: center; }
+
+/* Matrix decorative panel — desktop only */
+.hero-matrix-panel {
+  background: rgba(0,20,0,0.35);
+  border: 1px solid var(--g4);
+  padding: 20px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--g4);
+  position: relative;
+  align-self: center;
+  overflow: hidden;
+}
+.hero-matrix-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--g3), transparent);
+}
+.hero-matrix-panel .hmp-header {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; font-weight: 700;
+  color: var(--g3);
+  letter-spacing: 0.3em;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-matrix-panel .hmp-header::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--g3); box-shadow: 0 0 6px var(--g3);
+}
+.hero-matrix-panel .hmp-line { color: var(--g4); margin-bottom: 2px; }
+.hero-matrix-panel .hmp-line .hmp-key { color: var(--g3); }
+.hero-matrix-panel .hmp-line .hmp-val { color: var(--g2); }
+.hero-matrix-panel .hmp-divider {
+  width: 100%; height: 1px;
+  background: var(--g4); margin: 10px 0; opacity: 0.4;
+}
+.hero-matrix-panel .hmp-ascii {
+  font-size: 11px; color: var(--g4); opacity: 0.5;
+  line-height: 1.3; margin-top: 10px; letter-spacing: 0.05em;
 }
 .hero-system-id {
   font-size: 12px; color: var(--g4);
@@ -579,7 +625,7 @@ section {
 .exp-item {
   position: relative;
   margin-bottom: 60px;
-  padding: 28px;
+  padding: 36px 32px;
   background: rgba(0,20,0,0.4);
   border: 1px solid var(--g4);
   transition: border-color 0.25s cubic-bezier(0.4,0,0.2,1),
@@ -625,7 +671,7 @@ section {
   font-size: 13px; color: var(--g3);
   line-height: 2; margin-top: 12px;
 }
-.exp-desc li { margin-bottom: 6px; list-style: none; position: relative; padding-left: 20px; }
+.exp-desc li { margin-bottom: 8px; list-style: none; position: relative; padding-left: 20px; }
 .exp-desc li::before { content: '▸'; position: absolute; left: 0; color: var(--g3); }
 .exp-tech { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
 .exp-tech span {
@@ -970,9 +1016,11 @@ footer {
     overflow-x: hidden;
   }
   #hero {
+    grid-template-columns: 1fr;
     padding: 80px 16px 60px;
     min-height: 100svh;
   }
+  .hero-matrix-panel { display: none; }
 
   /* --- HERO --- */
   .hero-system-id {
@@ -1191,6 +1239,7 @@ footer {
 
   <!-- HERO -->
   <section id="hero">
+    <div class="hero-left">
     <div class="hero-system-id reveal">
       <span class="status-dot"></span>
       SYSTEM ONLINE &nbsp;// &nbsp; NODE_ID: TLY-KL-IN-0042 &nbsp;// &nbsp; STATUS: ACTIVE
@@ -1231,6 +1280,32 @@ footer {
       <span>SCROLL_DOWN</span>
       <div class="scroll-arrow">
         <span></span><span></span><span></span>
+      </div>
+    </div>
+    </div>
+
+    <!-- Matrix system readout — desktop only -->
+    <div class="hero-matrix-panel reveal reveal-delay-3">
+      <div class="hmp-header">SYS_READOUT</div>
+      <div class="hmp-line"><span class="hmp-key">node    </span> <span class="hmp-val">TLY-KL-IN-0042</span></div>
+      <div class="hmp-line"><span class="hmp-key">user    </span> <span class="hmp-val">mridul_chundaran</span></div>
+      <div class="hmp-line"><span class="hmp-key">role    </span> <span class="hmp-val">swe_backend</span></div>
+      <div class="hmp-line"><span class="hmp-key">stack   </span> <span class="hmp-val">py.flask.fb</span></div>
+      <div class="hmp-line"><span class="hmp-key">ml_acc  </span> <span class="hmp-val">0.88</span></div>
+      <div class="hmp-line"><span class="hmp-key">uptime  </span> <span class="hmp-val">99.9%</span></div>
+      <div class="hmp-line"><span class="hmp-key">status  </span> <span class="hmp-val" style="color:var(--g);text-shadow:0 0 6px var(--g)">ACTIVE</span></div>
+      <div class="hmp-divider"></div>
+      <div class="hmp-line"><span class="hmp-key">encrypt </span> <span class="hmp-val">AES-256-CBC</span></div>
+      <div class="hmp-line"><span class="hmp-key">proto   </span> <span class="hmp-val">TLS_1.3</span></div>
+      <div class="hmp-line"><span class="hmp-key">auth    </span> <span class="hmp-val">VERIFIED</span></div>
+      <div class="hmp-divider"></div>
+      <div class="hmp-ascii">
+&gt; 01001101 01010010<br>
+&gt; 01001001 01000100<br>
+&gt; 01010101 01001100<br>
+&gt; PAYLOAD_READY<br>
+&gt; CONNECTION_SECURE<br>
+&gt; <span style="color:var(--g);animation:blink 1s steps(1) infinite">_</span>
       </div>
     </div>
   </section>
@@ -1462,7 +1537,7 @@ footer {
       <div class="exp-item reveal reveal-delay-2">
         <div class="exp-header">
           <div>
-            <div class="exp-role">Software Full Stack Developer Intern</div>
+            <div class="exp-role">Software Full Stack Developer</div>
             <div class="exp-company">Mexilet Technologies — Thalassery, Kerala</div>
           </div>
           <div class="exp-period">OCT 2024 — SEP 2025 &nbsp;·&nbsp; 1 YEAR</div>
@@ -1952,7 +2027,7 @@ updateClock();
   const roles = [
     'Python Backend Developer',
     'Automation & ML Engineer',
-    'Full Stack Developer Intern',
+    'Full Stack Developer',
     'Flask & Firebase Engineer',
     'Open to SWE Roles'
   ];
