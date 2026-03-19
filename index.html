@@ -1816,16 +1816,12 @@ footer {
 (function(){
   const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   if(!isTouch) return;
-  // Hide all cursor elements immediately
+  // Hide all cursor elements immediately (not needed on touch)
   ['cursor-dot','cursor-ring','cursor-cross-h','cursor-cross-v'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.style.display = 'none';
   });
-  // Hide boot, show main immediately
-  const boot = document.getElementById('boot-screen');
-  const main = document.getElementById('main');
-  if(boot) boot.style.display = 'none';
-  if(main){ main.style.opacity = '1'; main.classList.add('visible'); }
+  // Boot sequence still plays on mobile (faster version via lineDelay/barSpeed)
 })();
 
 // ============================================================
