@@ -1,6 +1,6 @@
-# ⬡ MC. — Cyberpunk Portfolio
+# ⬡ M.CHUNDARAN — Matrix Terminal Portfolio
 
-> **A cinematic, cyberpunk-themed developer portfolio** built with zero frameworks — just raw HTML, CSS, and JavaScript.
+> **A hacker-themed developer portfolio** with matrix rain, boot sequence, terminal UI, 3D card tilt, and decode animations — all in a single HTML file.
 
 🔗 **Live:** [mridul010.github.io/Portfolio](https://mridul010.github.io/Portfolio)
 
@@ -8,55 +8,49 @@
 
 ## ⚡ Features
 
-- 🎬 **Cinematic Experience** — CRT scanline overlay, vignette effect, and particle-driven Three.js background that shifts color as you scroll
-- 🎮 **Cyberpunk UI** — Orbitron typography, glitch effects on the hero name, neon cyan/magenta palette, HUD-inspired navigation
-- 🔊 **Immersive SFX** — Web Audio API-powered sound engine with hover pulses, cyber clicks, card scans, and section-change chords (toggle with ♪)
-- 📜 **Horizontal Scroll Missions** — GSAP-pinned horizontal project showcase with smooth scrub
-- ⌨️ **Typewriter Role Cycler** — Animated role titles with blinking cursor
-- 📊 **Scroll-Triggered Animations** — Bio word reveal, skill bar fills, timeline draw, stat counters, staggered card reveals
-- 🖱️ **Custom Cursor** — GPU-composited dot + ring with hover expansion on interactive elements
-- 📱 **Fully Responsive** — Polished mobile layout with bottom tab navigation, reduced particles, and touch-friendly targets
+- 🖥️ **Boot Sequence** — Realistic OS boot animation with line-by-line display and progress bar
+- 🌧️ **Matrix Rain** — Full canvas rain effect throttled to ~24fps for smooth performance
+- ⌨️ **Terminal UI** — Bio displayed as `cat profile.json` in a styled terminal block
+- 🃏 **3D Card Tilt** — rAF-lerped perspective transforms on hover (mouse) and gyroscope (mobile)
+- 🔤 **Decode Text** — Section titles scramble through random characters before resolving
+- 📊 **Animated Skill Bars** — CSS transition-based bars triggered by IntersectionObserver
+- 🖱️ **Custom Cursor** — Dot + ring + crosshair, rAF-driven at 60fps
+- 📱 **Mobile Optimized** — Touch detection, gyro tilt, fast boot, hidden cursor elements
+- 🔐 **Email Obfuscation** — JS-assembled to prevent scraping
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
 | **Structure** | HTML5, Semantic Markup |
-| **Styling** | Vanilla CSS, CSS Custom Properties, Clamp Typography |
-| **Animation** | GSAP 3 + ScrollTrigger |
-| **3D Background** | Three.js (WebGL Particles) |
-| **Sound** | Web Audio API (no dependencies) |
+| **Styling** | Vanilla CSS, Custom Properties |
+| **Animation** | CSS transitions + rAF JavaScript |
+| **Matrix Rain** | Canvas 2D API (throttled) |
+| **Scroll** | IntersectionObserver, eased JS scroll |
 | **Deployment** | GitHub Pages |
-
-## 🚀 Performance
-
-- Single unified `requestAnimationFrame` loop (cursor + Three.js + scroll)
-- GPU compositing via `translate3d` and `will-change`
-- Pixel ratio capped at 2× for HiDPI screens
-- Scroll work offloaded to rAF cache — zero heavy computation on scroll events
-- Mobile: 800 particles (vs 1500 desktop), antialiasing disabled
-- CSS `contain: layout style` on sections for isolated repaints
-
-## 📂 Structure
-
-```
-├── index.html    # Single-file portfolio (HTML + CSS + JS)
-├── image.png     # Profile photo
-└── README.md
-```
 
 ## 🎨 Color Palette
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--cyan` | `#00f0ff` | Primary accent, links, borders |
-| `--magenta` | `#ff0080` | Secondary accent, highlights |
-| `--yellow` | `#f5ff00` | Particle color shift |
-| `--bg` | `#030309` | Background |
-| `--text` | `#b8c8e8` | Body text |
+| `--g` | `#00ff41` | Primary matrix green |
+| `--g2` | `#00cc33` | Secondary green |
+| `--g3` | `#008f11` | Muted green |
+| `--g4` | `#003b00` | Dark green |
+| `--black` | `#020c02` | Background |
+
+## 🚀 Performance
+
+- Matrix rain capped at ~24fps to prevent CPU overload
+- Custom cursor via single rAF loop (no CSS transitions)
+- 3D tilt uses lerp-based rAF with auto-stop when settled
+- IntersectionObserver for all scroll reveals (zero scroll listeners)
+- No `backdrop-filter` — solid backgrounds only
+- Scanlines as GPU-cached SVG tile, not repeating-gradient
+- Passive event listeners throughout
 
 ---
 
 <p align="center">
-  <b>MC<span style="color:#ff0080">.</span></b> — Designed & Developed by <a href="https://github.com/Mridul010">Mridul Chundaran</a>
+  <b>M<span style="color:#008f11">.</span>CHUNDARAN</b> — Designed & Developed by <a href="https://github.com/Mridul010">Mridul Chundaran</a>
 </p>
