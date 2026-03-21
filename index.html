@@ -21,8 +21,8 @@
   --g4: #003b00;
   --gd: #001a00;
   --black: #020c02;
-  --glow: 0 0 8px #00ff41, 0 0 20px #00cc33;
-  --glow2: 0 0 4px #00ff41, 0 0 12px #00cc33, 0 0 30px #008f11;
+  --glow: 0 0 4px #00ff41, 0 0 12px #00cc33;
+  --glow2: 0 0 3px #00ff41, 0 0 8px #00cc33, 0 0 20px #008f11;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -329,7 +329,7 @@ section {
 }
 .hero-name-main {
   color: var(--g);
-  text-shadow: 0 0 6px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.2);
+  text-shadow: 0 0 4px rgba(0,255,65,0.4), 0 0 14px rgba(0,255,65,0.15);
   display: block;
   position: relative;
 }
@@ -912,7 +912,7 @@ section {
 .contact-value {
   font-family: 'VT323', monospace;
   font-size: 24px; color: var(--g2);
-  text-shadow: 0 0 6px rgba(0,204,51,0.4);
+  text-shadow: 0 0 4px rgba(0,204,51,0.3);
   text-decoration: none;
   display: block;
   transition: color 0.2s, text-shadow 0.2s;
@@ -1246,7 +1246,7 @@ footer {
     </div>
     <h1 class="hero-name reveal reveal-delay-1">
       <span class="hero-name-main" data-text="MRIDUL">MRIDUL</span>
-      <span class="hero-name-main" data-text="CHUNDARAN" style="color:var(--g);text-shadow:0 0 6px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.2)">CHUNDARAN</span>
+      <span class="hero-name-main" data-text="CHUNDARAN" style="color:var(--g);text-shadow:0 0 4px rgba(0,255,65,0.4), 0 0 14px rgba(0,255,65,0.15)">CHUNDARAN</span>
     </h1>
     <div class="hero-tagline reveal reveal-delay-2">
       <span id="typewriter"></span><span class="cursor-blink">_</span>
@@ -1293,7 +1293,7 @@ footer {
       <div class="hmp-line"><span class="hmp-key">stack   </span> <span class="hmp-val">py.flask.fb</span></div>
       <div class="hmp-line"><span class="hmp-key">ml_acc  </span> <span class="hmp-val">0.88</span></div>
       <div class="hmp-line"><span class="hmp-key">uptime  </span> <span class="hmp-val">99.9%</span></div>
-      <div class="hmp-line"><span class="hmp-key">status  </span> <span class="hmp-val" style="color:var(--g);text-shadow:0 0 6px var(--g)">ACTIVE</span></div>
+      <div class="hmp-line"><span class="hmp-key">status  </span> <span class="hmp-val" style="color:var(--g);text-shadow:0 0 4px var(--g)">ACTIVE</span></div>
       <div class="hmp-divider"></div>
       <div class="hmp-line"><span class="hmp-key">encrypt </span> <span class="hmp-val">AES-256-CBC</span></div>
       <div class="hmp-line"><span class="hmp-key">proto   </span> <span class="hmp-val">TLS_1.3</span></div>
@@ -1869,11 +1869,11 @@ footer {
       if(bright > 0.98){
         ctx.fillStyle = '#ffffff';
         ctx.shadowColor = '#00ff41';
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 6;
       } else if(bright > 0.85){
         ctx.fillStyle = '#00ff41';
         ctx.shadowColor = '#00ff41';
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 4;
       } else {
         ctx.fillStyle = '#006400';
         ctx.shadowBlur = 0;
@@ -2288,7 +2288,7 @@ updateClock();
   setInterval(()=>{
     names.forEach(n=>{
       if(Math.random()>0.96){
-        n.style.textShadow='3px 0 #00ff41, -3px 0 #008f11, 0 0 20px #00ff41';
+        n.style.textShadow='2px 0 #00ff41, -2px 0 #008f11, 0 0 12px #00ff41';
         n.style.transform='translateX(2px)';
         setTimeout(()=>{ n.style.textShadow=''; n.style.transform=''; }, 70);
       }
