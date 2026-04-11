@@ -2292,6 +2292,35 @@
             try { document.querySelectorAll('.gs-reveal').forEach(function(el){ el.style.opacity = '1'; el.style.visibility = 'visible'; }); } catch (_) {}
         }
     </script>
+    <script>
+        (function() {
+            var maxWait = 4000;
+            var intervalMs = 300;
+            var elapsed = 0;
+
+            function reveal() {
+                try { var pre = document.getElementById('preloader'); if (pre) pre.style.display = 'none'; } catch (_) {}
+                try { var mn = document.getElementById('main-nav'); if (mn) mn.style.opacity = 1; } catch (_) {}
+                try { var dn = document.getElementById('dot-nav'); if (dn) dn.style.opacity = 1; } catch (_) {}
+                try { var sc = document.getElementById('section-counter'); if (sc) sc.style.opacity = 1; } catch (_) {}
+                try { var wrapperEl = document.getElementById('fullpage-wrapper'); if (wrapperEl) wrapperEl.style.transform = 'translateY(0)'; } catch (_) {}
+                try { document.querySelectorAll('.gs-reveal').forEach(function(el){ el.style.opacity = '1'; el.style.visibility = 'visible'; }); } catch (_) {}
+            }
+
+            var tid = setInterval(function() {
+                try {
+                    var pre = document.getElementById('preloader');
+                    if (!pre || window.getComputedStyle(pre).display === 'none') { clearInterval(tid); return; }
+                } catch (_) { clearInterval(tid); return; }
+                elapsed += intervalMs;
+                if (elapsed >= maxWait) { reveal(); clearInterval(tid); }
+            }, intervalMs);
+
+            window.addEventListener('error', function(){ reveal(); });
+            window.addEventListener('unhandledrejection', function(){ reveal(); });
+            document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ try { var pre = document.getElementById('preloader'); if (pre && window.getComputedStyle(pre).display !== 'none') reveal(); } catch(_){} }, 1500); });
+        })();
+    </script>
 </body>
 
 </html>
