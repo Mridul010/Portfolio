@@ -1,0 +1,5 @@
+corrupted.html
+.gemini/
+.DS_Store
+node_modules/
+dist/

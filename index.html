@@ -9,14 +9,11 @@
     <meta name="description"
         content="Portfolio of Mridul Chundaran — Software Engineer building systems that think. Explore projects, skills, and the architecture behind intelligent software." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" /></noscript>
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" /></noscript>
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* ============================================= */
@@ -47,7 +44,7 @@
             --grid-line: rgba(255, 255, 255, 0.02);
             --glass: rgba(255, 255, 255, 0.04);
             --glass-border: rgba(255, 255, 255, 0.12);
-            --shadow-card: 0 32px 80px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255,255,255,0.08);
+            --shadow-card: 0 32px 80px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.08);
             --cursor-border: rgba(110, 231, 183, 0.6);
             --cursor-bg: rgba(110, 231, 183, 0.07);
         }
@@ -73,7 +70,7 @@
             --grid-line: rgba(0, 0, 0, 0.03);
             --glass: rgba(255, 255, 255, 0.35);
             --glass-border: rgba(255, 255, 255, 0.8);
-            --shadow-card: 0 32px 80px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255,255,255,0.7);
+            --shadow-card: 0 32px 80px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.7);
             --cursor-border: rgba(13, 148, 136, 0.6);
             --cursor-bg: rgba(13, 148, 136, 0.07);
         }
@@ -94,8 +91,6 @@
             /* JS controls all scrolling */
             scroll-behavior: auto;
             scrollbar-width: none;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         ::-webkit-scrollbar {
@@ -103,15 +98,12 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             overflow: hidden;
             transition: background var(--transition-theme), color var(--transition-theme);
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            backface-visibility: hidden;
-            perspective: 1000px;
         }
 
         /* ============================================= */
@@ -180,8 +172,6 @@
             height: 100vh;
             transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform;
-            backface-visibility: hidden;
-            contain: layout style paint;
         }
 
         .fp-section {
@@ -190,8 +180,6 @@
             height: 100dvh;
             position: relative;
             overflow: hidden;
-            contain: layout style paint;
-            backface-visibility: hidden;
         }
 
         /* Chapter counter on each section (storytelling) */
@@ -213,21 +201,6 @@
         @media (max-width: 768px) {
             .chapter-indicator {
                 display: none;
-            }
-
-            /* Performance: Disable non-critical animations on mobile */
-            * {
-                scroll-behavior: auto !important;
-            }
-
-            /* Optimize animations for mobile */
-            .skills-scroll {
-                animation: scroll-left 35s linear infinite;
-            }
-
-            /* Reduce paint operations */
-            .noise-overlay {
-                background-size: 512px 512px;
             }
         }
 
@@ -273,16 +246,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: border-color 0.4s ease, background 0.4s ease;
+            transition: all 0.4s ease;
             overflow: hidden;
-            will-change: transform;
         }
 
         #theme-toggle:hover {
             border-color: var(--border-hover);
             background: var(--primary-glow);
             transform: rotate(15deg) scale(1.05);
-            backface-visibility: hidden;
         }
 
         #theme-toggle .icon-sun,
@@ -326,10 +297,8 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            transition: border-color var(--transition-theme);
-            transform: translate3d(-50%, -50%, 0);
-            will-change: transform;
-            backface-visibility: hidden;
+            transition: width 0.3s ease, height 0.3s ease, border-color var(--transition-theme);
+            transform: translate(-50%, -50%);
         }
 
         #custom-cursor.expanded {
@@ -337,7 +306,6 @@
             height: 56px;
             border-color: var(--primary);
             background: var(--cursor-bg);
-            transition: width 0.25s ease, height 0.25s ease, border-color var(--transition-theme);
         }
 
         @media (pointer: coarse) {
@@ -357,7 +325,6 @@
             opacity: var(--noise-opacity);
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             transition: opacity var(--transition-theme);
-            will-change: opacity;
         }
 
         /* ============================================= */
@@ -427,12 +394,11 @@
             text-transform: uppercase;
             color: #0a0a0a;
             background: linear-gradient(135deg, var(--primary), #34d399);
-            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
             overflow: hidden;
             border: none;
             cursor: pointer;
             text-decoration: none;
-            will-change: transform;
         }
 
         [data-theme="light"] .btn-glow {
@@ -441,9 +407,8 @@
         }
 
         .btn-glow:hover {
-            transform: translate3d(0, -3px, 0);
+            transform: translateY(-3px);
             box-shadow: 0 12px 40px var(--primary-shadow);
-            backface-visibility: hidden;
         }
 
         .btn-outline {
@@ -459,18 +424,16 @@
             color: var(--primary);
             border: 1px solid var(--border-hover);
             background: transparent;
-            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none;
-            will-change: transform;
         }
 
         .btn-outline:hover {
             background: var(--primary-glow);
             border-color: var(--primary);
-            transform: translate3d(0, -3px, 0);
+            transform: translateY(-3px);
             box-shadow: 0 8px 30px var(--primary-glow);
-            backface-visibility: hidden;
         }
 
         /* ============================================= */
@@ -482,12 +445,10 @@
             border-radius: 1.5rem;
             background: var(--bg-card);
             backdrop-filter: blur(12px);
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            will-change: transform;
-            contain: layout style paint;
         }
 
         .project-card::before {
@@ -502,9 +463,8 @@
 
         .project-card:hover {
             border-color: var(--border-hover);
-            transform: translate3d(0, -8px, 0);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-card), 0 0 40px var(--primary-glow);
-            backface-visibility: hidden;
         }
 
         .project-card:hover::before {
@@ -520,11 +480,11 @@
         }
 
         [data-theme="light"] .project-row:hover {
-            background-color: rgba(255, 182, 193, 0.15);
+            background-color: transparent;
         }
 
         [data-theme="dark"] .project-row:hover {
-            background-color: rgba(220, 100, 100, 0.12);
+            background-color: transparent;
         }
 
         .project-row .project-arrow {
@@ -536,20 +496,23 @@
             align-items: center;
             justify-content: center;
             border-radius: 0.5rem;
-            transition: background-color 0.2s ease, transform 0.15s ease;
-            will-change: transform;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
         [data-theme="light"] .project-row:hover .project-arrow {
-            background-color: rgba(255, 182, 193, 0.3);
+            background-color: transparent;
         }
 
-        [data-theme="dark"] .project-row:hover .project-arrow {
-            background-color: rgba(220, 100, 100, 0.2);
+        .project-row:hover .project-arrow {
+            background-color: transparent;
+        }
+
+        .project-row:hover h4 {
+            transform: scale(1.12) translateX(15px);
         }
 
         .project-arrow:active {
-            transform: scale3d(0.95, 0.95, 1);
+            transform: scale(0.95);
         }
 
         /* ============================================= */
@@ -609,8 +572,6 @@
             display: flex;
             gap: 0.75rem;
             animation: scroll-left 30s linear infinite;
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
         .skills-scroll:hover {
@@ -619,11 +580,11 @@
 
         @keyframes scroll-left {
             0% {
-                transform: translate3d(0, 0, 0);
+                transform: translateX(0);
             }
 
             100% {
-                transform: translate3d(-50%, 0, 0);
+                transform: translateX(-50%);
             }
         }
 
@@ -631,6 +592,7 @@
         /*  MOBILE RESPONSIVE OPTIMIZATIONS              */
         /* ============================================= */
         @media (max-width: 480px) {
+
             /* Stat orbs - prevent overlap on very small screens */
             .stat-orb {
                 width: 85px !important;
@@ -640,12 +602,12 @@
                 flex-shrink: 0 !important;
             }
 
-            .stat-orb > div:first-child {
+            .stat-orb>div:first-child {
                 font-size: 1.5rem !important;
                 line-height: 1 !important;
             }
 
-            .stat-orb > div:last-child {
+            .stat-orb>div:last-child {
                 font-size: 0.38rem !important;
                 margin-top: 0.3rem !important;
                 text-transform: uppercase;
@@ -745,6 +707,7 @@
         }
 
         @media (max-width: 640px) {
+
             /* Philosophy stat orbs layout */
             .stat-orb {
                 width: 105px;
@@ -752,11 +715,11 @@
                 flex-shrink: 0;
             }
 
-            .stat-orb > div:first-child {
+            .stat-orb>div:first-child {
                 font-size: 1.8rem !important;
             }
 
-            .stat-orb > div:last-child {
+            .stat-orb>div:last-child {
                 font-size: 0.42rem !important;
                 margin-top: 0.35rem !important;
             }
@@ -824,6 +787,7 @@
         }
 
         @media (max-width: 768px) {
+
             /* Additional refinements for mid-range devices */
             .skill-pill {
                 padding: 0.4rem 0.9rem;
@@ -842,11 +806,11 @@
                 flex-shrink: 0;
             }
 
-            .stat-orb > div:first-child {
+            .stat-orb>div:first-child {
                 font-size: 2rem !important;
             }
 
-            .stat-orb > div:last-child {
+            .stat-orb>div:last-child {
                 font-size: 0.48rem !important;
                 margin-top: 0.4rem !important;
             }
@@ -1417,70 +1381,72 @@
                             style="font-size:clamp(1.5rem, 3vw, 2rem); font-weight:200; color:var(--text); margin-top:0.5rem;">
                             Selected Works</h3>
                     </div>
-                    <div class="project-row group gs-reveal" data-color-dark="rgba(110,231,183,0.12)"
-                        data-color-light="rgba(13,148,136,0.1)" data-title="Smart Lead AI"
-                        data-desc="&bull; Built a full-stack ML application using Python, Scikit-Learn, and Flask to predict customer conversion probabilities, training a Logistic Regression model on a 1,000-lead synthetic dataset with 91% accuracy.<br><br>&bull; Deployed a real-time prediction web interface providing instant probability scores to support data-driven marketing decisions and improve lead prioritization."
-                        data-tech="Python, Scikit-Learn, Flask, ML" data-accent="var(--primary)" data-link="https://github.com/Mridul010/Smart-Lead-Ai"
-                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
+                    <div class="project-row group gs-reveal" data-color-dark="rgba(110,231,183,0.22)"
+                        data-color-light="rgba(13,148,136,0.18)" data-title="FuelRate"
+                        data-desc="&bull; High-end PWA democratizing fuel price transparency across 50+ Indian cities with real-time tracking and geolocation.<br><br>&bull; Hybrid Flat-File backend using Puppeteer scraping, delivering sub-500ms load times and offline access via Service Workers."
+                        data-tech="HTML5, CSS3, Vanilla JS, Chart.js, Service Workers, Puppeteer, GitHub Actions"
+                        data-accent="var(--primary)" data-link="https://github.com/Mridul010/Fuel_App.git"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1rem 0; transition:opacity 0.3s ease;">
                         <div class="flex items-center justify-between pointer-events-none">
                             <h4
-                                style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
-                                Smart Lead AI</h4>
-                            <span class="material-symbols-outlined project-arrow"
-                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
-                        </div>
-                        <p class="pointer-events-none"
-                            style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
-                            NLP · Lead Analytics · Real-time</p>
-                    </div>
-                    <div class="project-row group gs-reveal" data-color-dark="rgba(129,140,248,0.12)"
-                        data-color-light="rgba(99,102,241,0.1)" data-title="Emotion Detection"
-                        data-desc="&bull; Developed and deployed a Python-Flask web application integrating IBM Watson AI Libraries to classify and score emotions from free-form text input via a RESTful API endpoint.<br><br>&bull; Applied full software development lifecycle practices including modular Python architecture, unit testing, and error handling to ensure production-grade reliability and maintainability."
-                        data-tech="Python, Flask, IBM Watson, REST API" data-accent="var(--secondary)" data-link="https://github.com/Mridul010/final_project"
-                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
-                        <div class="flex items-center justify-between pointer-events-none">
-                            <h4
-                                style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
-                                Emotion Detection</h4>
-                            <span class="material-symbols-outlined project-arrow"
-                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
-                        </div>
-                        <p class="pointer-events-none"
-                            style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
-                            Computer Vision · Edge AI · Real-time</p>
-                    </div>
-                    <div class="project-row group gs-reveal" data-color-dark="rgba(251,191,36,0.1)"
-                        data-color-light="rgba(251,191,36,0.1)" data-title="TrackEx"
-                        data-desc="&bull; Designed a personal finance tracker featuring tax calculation, spending analytics, and interactive dashboards backed by a Python REST API and Firebase real-time database.<br><br>&bull; Implemented ML-based stock market prediction using Bi-LSTM, XGBoost, and CNN models, achieving 92% accuracy and delivering forward-looking market insights to users."
-                        data-tech="Python, REST API, Firebase, XGBoost, CNN" data-accent="#fbbf24" data-link=""
-                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
-                        <div class="flex items-center justify-between pointer-events-none">
-                            <h4
-                                style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
-                                TrackEx</h4>
-                            <span class="material-symbols-outlined project-arrow"
-                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
-                        </div>
-                        <p class="pointer-events-none"
-                            style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
-                            FinTech · ML · Cloud Architecture</p>
-                    </div>
-                    <div class="project-row group gs-reveal" data-color-dark="rgba(220,100,100,0.12)"
-                        data-color-light="rgba(255,182,193,0.15)" data-title="FuelRate: The Master Prompt"
-                        data-desc="&bull; Built a zero-budget, high-end Progressive Web App that democratizes fuel price transparency across 50+ Indian cities, featuring real-time Petrol, Diesel, LPG, and CNG price tracking with automatic geolocation detection.<br><br>&bull; Engineered a Hybrid Flat-File backend using Node.js & Puppeteer scraping (GitHub Actions), delivering sub-500ms load times with smart context: 7-day price trends, state VAT breakdowns, global crude correlation, and predictive caching via Service Workers for offline access."
-                        data-tech="HTML5, CSS3, Vanilla JS, Chart.js, Service Workers, Puppeteer, GitHub Actions" data-accent="#FF4444"
-                        data-link="https://github.com/Mridul010/Fuel_App.git"
-                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
-                        <div class="flex items-center justify-between pointer-events-none">
-                            <h4
-                                style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
+                                style="font-size:clamp(1.4rem, 4vw, 2.5rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:all 0.4s cubic-bezier(0.2, 0, 0.2, 1); transform-origin: left;">
                                 FuelRate</h4>
                             <span class="material-symbols-outlined project-arrow"
                                 style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
                         </div>
                         <p class="pointer-events-none"
-                            style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
-                            PWA · Fuel Intelligence · Zero-Cost Hosting</p>
+                            style="color:var(--text-muted); font-size:0.7rem; margin-top:0.25rem; transition:color 0.15s ease;">
+                            PWA · Fuel Intelligence · Cloud Edge</p>
+                    </div>
+                    <div class="project-row group gs-reveal" data-color-dark="rgba(168, 85, 247, 0.22)"
+                        data-color-light="rgba(168, 85, 247, 0.18)" data-title="Smart Lead AI"
+                        data-desc="&bull; Built a full-stack ML application using Python, Scikit-Learn, and Flask to predict customer conversion probabilities, training a Logistic Regression model on a 1,000-lead synthetic dataset with 91% accuracy.<br><br>&bull; Deployed a real-time prediction web interface providing instant probability scores to support data-driven marketing decisions and improve lead prioritization."
+                        data-tech="Python, Scikit-Learn, Flask, ML" data-accent="#a855f7"
+                        data-link="https://github.com/Mridul010/Smart-Lead-Ai"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1rem 0; transition:opacity 0.3s ease;">
+                        <div class="flex items-center justify-between pointer-events-none">
+                            <h4
+                                style="font-size:clamp(1.4rem, 4vw, 2.5rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:all 0.4s cubic-bezier(0.2, 0, 0.2, 1); transform-origin: left;">
+                                Smart Lead AI</h4>
+                            <span class="material-symbols-outlined project-arrow"
+                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
+                        </div>
+                        <p class="pointer-events-none"
+                            style="color:var(--text-muted); font-size:0.7rem; margin-top:0.25rem; transition:color 0.15s ease;">
+                            NLP · Lead Analytics · Predictive ML</p>
+                    </div>
+                    <div class="project-row group gs-reveal" data-color-dark="rgba(129,140,248,0.22)"
+                        data-color-light="rgba(99,102,241,0.18)" data-title="Emotion Detection"
+                        data-desc="&bull; Developed and deployed a Python-Flask web application integrating IBM Watson AI Libraries to classify and score emotions from free-form text input via a RESTful API endpoint.<br><br>&bull; Applied full software development lifecycle practices including modular Python architecture, unit testing, and error handling to ensure production-grade reliability and maintainability."
+                        data-tech="Python, Flask, IBM Watson, REST API" data-accent="var(--secondary)"
+                        data-link="https://github.com/Mridul010/final_project"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1rem 0; transition:opacity 0.3s ease;">
+                        <div class="flex items-center justify-between pointer-events-none">
+                            <h4
+                                style="font-size:clamp(1.4rem, 4vw, 2.5rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:all 0.4s cubic-bezier(0.2, 0, 0.2, 1); transform-origin: left;">
+                                Emotion Detection</h4>
+                            <span class="material-symbols-outlined project-arrow"
+                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
+                        </div>
+                        <p class="pointer-events-none"
+                            style="color:var(--text-muted); font-size:0.7rem; margin-top:0.25rem; transition:color 0.15s ease;">
+                            Computer Vision · AI Synthesis · Real-time</p>
+                    </div>
+                    <div class="project-row group gs-reveal" data-color-dark="rgba(251,191,36,0.18)"
+                        data-color-light="rgba(251,191,36,0.18)" data-title="TrackEx"
+                        data-desc="&bull; Designed a personal finance tracker featuring tax calculation, spending analytics, and interactive dashboards backed by a Python REST API and Firebase real-time database.<br><br>&bull; Implemented ML-based stock market prediction using Bi-LSTM, XGBoost, and CNN models, achieving 92% accuracy and delivering forward-looking market insights."
+                        data-tech="Python, REST API, Firebase, ML Models" data-accent="#fbbf24" data-link=""
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1rem 0; transition:opacity 0.3s ease;">
+                        <div class="flex items-center justify-between pointer-events-none">
+                            <h4
+                                style="font-size:clamp(1.4rem, 4vw, 2.5rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:all 0.4s cubic-bezier(0.2, 0, 0.2, 1); transform-origin: left;">
+                                TrackEx</h4>
+                            <span class="material-symbols-outlined project-arrow"
+                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
+                        </div>
+                        <p class="pointer-events-none"
+                            style="color:var(--text-muted); font-size:0.7rem; margin-top:0.25rem; transition:color 0.15s ease;">
+                            FinTech · Neural Forecast · Data Vision</p>
                     </div>
                 </div>
                 <div class="hidden lg:flex w-1/2 justify-end absolute right-0 items-center h-full pointer-events-none"
@@ -1926,7 +1892,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
     <script>
-        try {
         /* ==============================================
            GLOBALS
            ============================================== */
@@ -1983,7 +1948,7 @@
             triggerSectionEnter(index);
 
             // Hide scroll hint after first scroll
-            if (index > 0) gsap.to('#scroll-hint', { opacity: 0, duration: 0.4, overwrite: 'auto' });
+            if (index > 0) gsap.to('#scroll-hint', { opacity: 0, duration: 0.4 });
 
             setTimeout(() => { isScrolling = false; }, scrollCooldown);
         }
@@ -2002,8 +1967,8 @@
         window.addEventListener('touchend', (e) => {
             if (isScrolling) return;
             const diff = touchStartY - e.changedTouches[0].clientY;
-            if (diff > 50) goToSection(currentSection + 1);
-            else if (diff < -50) goToSection(currentSection - 1);
+            if (diff > 60) goToSection(currentSection + 1);
+            else if (diff < -60) goToSection(currentSection - 1);
         }, { passive: true });
 
         /* Keyboard support */
@@ -2111,32 +2076,19 @@
            ============================================== */
         const cursor = document.getElementById('custom-cursor');
         let cursorX = 0, cursorY = 0, targetCX = 0, targetCY = 0;
-        let lastUpdateTime = 0;
-        
-        document.addEventListener('mousemove', e => {
-            targetCX = e.clientX;
-            targetCY = e.clientY;
-        }, { passive: true });
-        
+        document.addEventListener('mousemove', e => { targetCX = e.clientX; targetCY = e.clientY; });
         function animateCursor() {
-            const now = performance.now();
-            if (now - lastUpdateTime < 8) {  // ~120fps cap for cursor
-                requestAnimationFrame(animateCursor);
-                return;
-            }
-            lastUpdateTime = now;
-
-            cursorX += (targetCX - cursorX) * 0.18;
-            cursorY += (targetCY - cursorY) * 0.18;
-            if (cursor) { 
-                cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`; 
+            cursorX += (targetCX - cursorX) * 0.15;
+            cursorY += (targetCY - cursorY) * 0.15;
+            if (cursor) {
+                cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
             }
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
         document.querySelectorAll('a, button, .project-row, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor?.classList.add('expanded'), { passive: true });
-            el.addEventListener('mouseleave', () => cursor?.classList.remove('expanded'), { passive: true });
+            el.addEventListener('mouseenter', () => cursor?.classList.add('expanded'));
+            el.addEventListener('mouseleave', () => cursor?.classList.remove('expanded'));
         });
 
         /* ==============================================
@@ -2282,44 +2234,6 @@
 
 
         });
-        } catch (e) {
-            try { console.error(e); } catch (_) {}
-            try { var pre = document.getElementById('preloader'); if (pre) pre.style.display = 'none'; } catch (_) {}
-            try { var mn = document.getElementById('main-nav'); if (mn) mn.style.opacity = 1; } catch (_) {}
-            try { var dn = document.getElementById('dot-nav'); if (dn) dn.style.opacity = 1; } catch (_) {}
-            try { var sc = document.getElementById('section-counter'); if (sc) sc.style.opacity = 1; } catch (_) {}
-            try { var wrapperEl = document.getElementById('fullpage-wrapper'); if (wrapperEl) wrapperEl.style.transform = 'translateY(0)'; } catch (_) {}
-            try { document.querySelectorAll('.gs-reveal').forEach(function(el){ el.style.opacity = '1'; el.style.visibility = 'visible'; }); } catch (_) {}
-        }
-    </script>
-    <script>
-        (function() {
-            var maxWait = 4000;
-            var intervalMs = 300;
-            var elapsed = 0;
-
-            function reveal() {
-                try { var pre = document.getElementById('preloader'); if (pre) pre.style.display = 'none'; } catch (_) {}
-                try { var mn = document.getElementById('main-nav'); if (mn) mn.style.opacity = 1; } catch (_) {}
-                try { var dn = document.getElementById('dot-nav'); if (dn) dn.style.opacity = 1; } catch (_) {}
-                try { var sc = document.getElementById('section-counter'); if (sc) sc.style.opacity = 1; } catch (_) {}
-                try { var wrapperEl = document.getElementById('fullpage-wrapper'); if (wrapperEl) wrapperEl.style.transform = 'translateY(0)'; } catch (_) {}
-                try { document.querySelectorAll('.gs-reveal').forEach(function(el){ el.style.opacity = '1'; el.style.visibility = 'visible'; }); } catch (_) {}
-            }
-
-            var tid = setInterval(function() {
-                try {
-                    var pre = document.getElementById('preloader');
-                    if (!pre || window.getComputedStyle(pre).display === 'none') { clearInterval(tid); return; }
-                } catch (_) { clearInterval(tid); return; }
-                elapsed += intervalMs;
-                if (elapsed >= maxWait) { reveal(); clearInterval(tid); }
-            }, intervalMs);
-
-            window.addEventListener('error', function(){ reveal(); });
-            window.addEventListener('unhandledrejection', function(){ reveal(); });
-            document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ try { var pre = document.getElementById('preloader'); if (pre && window.getComputedStyle(pre).display !== 'none') reveal(); } catch(_){} }, 1500); });
-        })();
     </script>
 </body>
 
