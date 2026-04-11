@@ -472,6 +472,46 @@
         }
 
         /* ============================================= */
+        /*  PROJECT ROW HOVER                            */
+        /* ============================================= */
+        .project-row {
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        [data-theme="light"] .project-row:hover {
+            background-color: rgba(255, 182, 193, 0.15);
+        }
+
+        [data-theme="dark"] .project-row:hover {
+            background-color: rgba(220, 100, 100, 0.12);
+        }
+
+        .project-row .project-arrow {
+            cursor: pointer;
+            pointer-events: all;
+            padding: 0.75rem;
+            margin: -0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        [data-theme="light"] .project-row:hover .project-arrow {
+            background-color: rgba(255, 182, 193, 0.3);
+        }
+
+        [data-theme="dark"] .project-row:hover .project-arrow {
+            background-color: rgba(220, 100, 100, 0.2);
+        }
+
+        .project-arrow:active {
+            transform: scale(0.95);
+        }
+
+        /* ============================================= */
         /*  SKILL PILLS                                  */
         /* ============================================= */
         .skill-pill {
@@ -541,6 +581,255 @@
 
             100% {
                 transform: translateX(-50%);
+            }
+        }
+
+        /* ============================================= */
+        /*  MOBILE RESPONSIVE OPTIMIZATIONS              */
+        /* ============================================= */
+        @media (max-width: 480px) {
+            /* Stat orbs - prevent overlap on very small screens */
+            .stat-orb {
+                width: 85px !important;
+                height: 85px !important;
+                min-width: 85px !important;
+                min-height: 85px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .stat-orb > div:first-child {
+                font-size: 1.5rem !important;
+                line-height: 1 !important;
+            }
+
+            .stat-orb > div:last-child {
+                font-size: 0.38rem !important;
+                margin-top: 0.3rem !important;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+
+            /* Skill pills - reduce padding and font for mobile */
+            .skill-pill {
+                padding: 0.35rem 0.75rem !important;
+                font-size: 0.58rem !important;
+                gap: 0.2rem !important;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .skill-pill .material-symbols-outlined {
+                font-size: 0.9em !important;
+                flex-shrink: 0;
+            }
+
+            /* Skills scroll container - prevent overflow */
+            .skills-scroll {
+                gap: 0.4rem !important;
+            }
+
+            /* Ensure skills container doesn't overflow viewport */
+            .overflow-hidden {
+                overflow: hidden !important;
+                width: 100% !important;
+            }
+
+            /* Philosophy stat orb flex container */
+            #s-philosophy .flex.items-center.justify-center.flex-wrap {
+                gap: 0.8rem !important;
+                flex-wrap: wrap !important;
+            }
+
+            /* Project titles on mobile */
+            .project-row h4 {
+                font-size: clamp(1.1rem, 3vw, 2rem) !important;
+                line-height: 1.1 !important;
+            }
+
+            .project-row p {
+                font-size: 0.7rem !important;
+            }
+
+            /* Section padding adjustments */
+            #s-toolkit {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            /* Heading sizes on tooltip/cards */
+            #project-hud {
+                width: 300px !important;
+                padding: 1.5rem !important;
+                border-radius: 1.25rem !important;
+            }
+
+            #hud-title {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            #hud-desc {
+                font-size: 0.7rem !important;
+                line-height: 1.5 !important;
+            }
+
+            /* Stat numbers font size on philosophy */
+            .stat-number {
+                font-size: 1.5rem !important;
+            }
+
+            /* Center philosophy section content */
+            #s-philosophy h2 {
+                font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+            }
+
+            #s-philosophy p {
+                font-size: 0.85rem !important;
+                max-width: 18rem !important;
+            }
+
+            /* Hero section optimization */
+            #hero-text {
+                font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
+                line-height: 0.95 !important;
+            }
+
+            #hero-sub {
+                font-size: 0.9rem !important;
+                max-width: 22rem !important;
+                padding: 0 1rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            /* Philosophy stat orbs layout */
+            .stat-orb {
+                width: 105px;
+                height: 105px;
+                flex-shrink: 0;
+            }
+
+            .stat-orb > div:first-child {
+                font-size: 1.8rem !important;
+            }
+
+            .stat-orb > div:last-child {
+                font-size: 0.42rem !important;
+                margin-top: 0.35rem !important;
+            }
+
+            /* Flexible gap for stat orbs */
+            #s-philosophy .flex.items-center.justify-center.flex-wrap {
+                gap: clamp(1rem, 3vw, 2.5rem) !important;
+                padding: 0 1rem !important;
+            }
+
+            /* Skill pills adjustments */
+            .skill-pill {
+                padding: 0.4rem 0.85rem;
+                font-size: 0.62rem;
+                white-space: nowrap;
+            }
+
+            .skill-pill .material-symbols-outlined {
+                font-size: 0.95em;
+                flex-shrink: 0;
+            }
+
+            /* Ensure buttons stack properly */
+            #hero-cta {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+
+            #hero-cta .btn-glow,
+            #hero-cta .btn-outline {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            /* Make sure text doesn't overflow */
+            .skill-pill-box {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.3rem !important;
+                white-space: nowrap;
+            }
+
+            /* Project HUD sizing for tablets */
+            #project-hud {
+                width: 340px;
+                padding: 2rem;
+            }
+
+            #s-profile h2 {
+                font-size: clamp(1.3rem, 3.5vw, 2.5rem) !important;
+            }
+
+            /* Operator profile cards */
+            .project-card {
+                padding: 1.5rem !important;
+            }
+
+            .project-card h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .project-card p {
+                font-size: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Additional refinements for mid-range devices */
+            .skill-pill {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.65rem;
+            }
+
+            .skill-pill .material-symbols-outlined {
+                font-size: 1em;
+                flex-shrink: 0;
+            }
+
+            /* Stat orbs keep good spacing */
+            .stat-orb {
+                width: 110px;
+                height: 110px;
+                flex-shrink: 0;
+            }
+
+            .stat-orb > div:first-child {
+                font-size: 2rem !important;
+            }
+
+            .stat-orb > div:last-child {
+                font-size: 0.48rem !important;
+                margin-top: 0.4rem !important;
+            }
+
+            /* Philosophy section gap */
+            #s-philosophy .flex.items-center.justify-center.flex-wrap {
+                gap: clamp(1.5rem, 4vw, 3.5rem) !important;
+            }
+
+            /* Ensure toolkit doesn't overflow */
+            #s-toolkit .overflow-hidden {
+                background: transparent;
+                margin: 0 -1.5rem;
+                padding: 0 1.5rem;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Discovery project items */
+            #project-list {
+                padding-right: 1rem !important;
+            }
+
+            .project-row h4 {
+                font-size: clamp(1.3rem, 4vw, 2.8rem) !important;
             }
         }
 
@@ -990,6 +1279,7 @@
                     backdrop-filter: blur(20px);
                     border: 1px solid var(--glass-border);
                     transition: transform 0.4s ease, box-shadow 0.4s ease;
+                    flex-shrink: 0;
                 }
 
                 .stat-orb:hover {
@@ -1002,6 +1292,17 @@
                     .stat-orb {
                         width: 110px;
                         height: 110px;
+                        flex-shrink: 0;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .stat-orb {
+                        width: 85px;
+                        height: 85px;
+                        flex-shrink: 0;
+                        min-width: 85px;
+                        min-height: 85px;
                     }
                 }
             </style>
@@ -1076,14 +1377,13 @@
                     <div class="project-row group gs-reveal" data-color-dark="rgba(110,231,183,0.12)"
                         data-color-light="rgba(13,148,136,0.1)" data-title="Smart Lead AI"
                         data-desc="&bull; Built a full-stack ML application using Python, Scikit-Learn, and Flask to predict customer conversion probabilities, training a Logistic Regression model on a 1,000-lead synthetic dataset with 91% accuracy.<br><br>&bull; Deployed a real-time prediction web interface providing instant probability scores to support data-driven marketing decisions and improve lead prioritization."
-                        data-tech="Python, Scikit-Learn, Flask, ML" data-accent="var(--primary)"
-                        onclick="window.open('https://github.com/Mridul010/Smart-Lead-Ai', '_blank')"
-                        style="cursor:pointer; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
+                        data-tech="Python, Scikit-Learn, Flask, ML" data-accent="var(--primary)" data-link="https://github.com/Mridul010/Smart-Lead-Ai"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
                         <div class="flex items-center justify-between pointer-events-none">
                             <h4
                                 style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
                                 Smart Lead AI</h4>
-                            <span class="material-symbols-outlined"
+                            <span class="material-symbols-outlined project-arrow"
                                 style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
                         </div>
                         <p class="pointer-events-none"
@@ -1093,14 +1393,13 @@
                     <div class="project-row group gs-reveal" data-color-dark="rgba(129,140,248,0.12)"
                         data-color-light="rgba(99,102,241,0.1)" data-title="Emotion Detection"
                         data-desc="&bull; Developed and deployed a Python-Flask web application integrating IBM Watson AI Libraries to classify and score emotions from free-form text input via a RESTful API endpoint.<br><br>&bull; Applied full software development lifecycle practices including modular Python architecture, unit testing, and error handling to ensure production-grade reliability and maintainability."
-                        data-tech="Python, Flask, IBM Watson, REST API" data-accent="var(--secondary)"
-                        onclick="window.open('https://github.com/Mridul010/final_project', '_blank')"
-                        style="cursor:pointer; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
+                        data-tech="Python, Flask, IBM Watson, REST API" data-accent="var(--secondary)" data-link="https://github.com/Mridul010/final_project"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
                         <div class="flex items-center justify-between pointer-events-none">
                             <h4
                                 style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
                                 Emotion Detection</h4>
-                            <span class="material-symbols-outlined"
+                            <span class="material-symbols-outlined project-arrow"
                                 style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
                         </div>
                         <p class="pointer-events-none"
@@ -1110,16 +1409,35 @@
                     <div class="project-row group gs-reveal" data-color-dark="rgba(251,191,36,0.1)"
                         data-color-light="rgba(251,191,36,0.1)" data-title="TrackEx"
                         data-desc="&bull; Designed a personal finance tracker featuring tax calculation, spending analytics, and interactive dashboards backed by a Python REST API and Firebase real-time database.<br><br>&bull; Implemented ML-based stock market prediction using Bi-LSTM, XGBoost, and CNN models, achieving 92% accuracy and delivering forward-looking market insights to users."
-                        data-tech="Python, REST API, Firebase, XGBoost, CNN" data-accent="#fbbf24"
-                        style="cursor:pointer; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
+                        data-tech="Python, REST API, Firebase, XGBoost, CNN" data-accent="#fbbf24" data-link=""
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
                         <div class="flex items-center justify-between pointer-events-none">
                             <h4
                                 style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
                                 TrackEx</h4>
+                            <span class="material-symbols-outlined project-arrow"
+                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
                         </div>
                         <p class="pointer-events-none"
                             style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
                             FinTech · ML · Cloud Architecture</p>
+                    </div>
+                    <div class="project-row group gs-reveal" data-color-dark="rgba(220,100,100,0.12)"
+                        data-color-light="rgba(255,182,193,0.15)" data-title="FuelRate: The Master Prompt"
+                        data-desc="&bull; Built a zero-budget, high-end Progressive Web App that democratizes fuel price transparency across 50+ Indian cities, featuring real-time Petrol, Diesel, LPG, and CNG price tracking with automatic geolocation detection.<br><br>&bull; Engineered a Hybrid Flat-File backend using Node.js & Puppeteer scraping (GitHub Actions), delivering sub-500ms load times with smart context: 7-day price trends, state VAT breakdowns, global crude correlation, and predictive caching via Service Workers for offline access."
+                        data-tech="HTML5, CSS3, Vanilla JS, Chart.js, Service Workers, Puppeteer, GitHub Actions" data-accent="#FF4444"
+                        data-link="https://github.com/Mridul010/Fuel_App.git"
+                        style="display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); padding:1.25rem 0; transition:opacity 0.3s ease;">
+                        <div class="flex items-center justify-between pointer-events-none">
+                            <h4
+                                style="font-size:clamp(1.8rem, 4.5vw, 4rem); font-weight:200; letter-spacing:-0.02em; color:var(--text); transition:color 0.15s ease;">
+                                FuelRate</h4>
+                            <span class="material-symbols-outlined project-arrow"
+                                style="color:var(--text-muted); font-size:1.5rem; transition:all 0.15s ease;">arrow_outward</span>
+                        </div>
+                        <p class="pointer-events-none"
+                            style="color:var(--text-muted); font-size:0.75rem; margin-top:0.35rem; transition:color 0.15s ease;">
+                            PWA · Fuel Intelligence · Zero-Cost Hosting</p>
                     </div>
                 </div>
                 <div class="hidden lg:flex w-1/2 justify-end absolute right-0 items-center h-full pointer-events-none"
@@ -1891,6 +2209,18 @@
                     });
                     gsap.to("#project-hud", { opacity: 0, x: 48, duration: 0.25, ease: "power2.in", overwrite: true });
                 });
+
+                // Arrow click handler - navigate only on arrow click
+                const arrow = row.querySelector('.project-arrow');
+                if (arrow) {
+                    arrow.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const link = row.getAttribute('data-link');
+                        if (link) {
+                            window.open(link, '_blank');
+                        }
+                    });
+                }
             });
 
 
